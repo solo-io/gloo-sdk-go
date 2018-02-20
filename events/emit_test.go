@@ -38,7 +38,7 @@ var _ = Describe("Emit", func() {
 			Expect(req.Header.Get("Content-Type")).To(Equal("application/json"))
 			Expect(req.Header.Get("X-Event-Content-Type")).To(Equal("application/json"))
 			Expect(req.Header.Get("X-Cloud-Events-Version")).To(Equal("0.1"))
-			Expect(req.Header.Get("X-Events-Id")).NotTo(BeEmpty())
+			Expect(req.Header.Get("X-Event-Id")).NotTo(BeEmpty())
 			Expect(req.Header.Get("X-Event-Time")).NotTo(BeEmpty())
 			Expect(req.Header.Get("X-Event-Type")).To(Equal("topic"))
 			Expect(req.Header.Get("X-Source-Id")).To(Equal("test"))

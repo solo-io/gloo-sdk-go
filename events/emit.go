@@ -15,6 +15,14 @@ const (
 
 	contentTypeJson = "application/json"
 	eventPath       = "/events"
+
+	headerContentType         = "Content-Type"
+	headerXEventContentType   = "X-Event-Content-Type"
+	headerXCloudEventsVersion = "X-Cloud-Events-Version"
+	headerXEventId            = "X-Event-Id"
+	headerXEventType          = "X-Event-Type"
+	headerXEventTime          = "X-Event-Time"
+	headerXSourceId           = "X-Source-Id"
 )
 
 type gloo struct {
@@ -97,13 +105,13 @@ func doHttpRequest(addr string, tlsConfig *TlsConfig, event cloudEvent) error {
 
 func constructHeaders(ctx context) http.Header {
 	headers := make(http.Header)
-	headers.Set("Content-Type", ctx.ContentType)
-	headers.Set("X-Event-Content-Type", ctx.ContentType)
-	headers.Set("X-Cloud-Events-Version", ctx.CloudEventsVersion)
-	headers.Set("X-Events-Id", ctx.EventId)
-	headers.Set("X-Event-Time", ctx.EventTime.Format(http.TimeFormat))
-	headers.Set("X-Event-Type", ctx.EventType)
-	headers.Set("X-Source-Id", ctx.Source.Id)
+	headers.Set(headerContentType, ctx.ContentType)
+	headers.Set(headerXEventContentType, ctx.ContentType)
+	headers.Set(headerXCloudEventsVersion, ctx.CloudEventsVersion)
+	headers.Set(headerXEventId, ctx.EventId)
+	headers.Set(headerXEventTime, ctx.EventTime.Format(http.TimeFormat))
+	headers.Set(headerXEventType, ctx.EventType)
+	headers.Set(headerXSourceId, ctx.Source.Id)
 	return headers
 }
 
