@@ -93,7 +93,7 @@ func doHttpRequest(addr string, tlsConfig *TlsConfig, event cloudEvent) error {
 	client.Header = constructHeaders(event.Context)
 	resp, err := client.R().
 		SetBody(event.Data).
-		Post("https://" + addr + eventPath)
+		Post(addr + eventPath)
 	if err != nil {
 		return errors.Wrap(err, "performing http POST")
 	}
